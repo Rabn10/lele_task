@@ -12,7 +12,8 @@ class SkillController extends Controller
         if(!auth()->check()) {
             return redirect()->route('login');
         }
-        return view('admin.skill');
+        $skills = Skill::all();
+        return view('admin.skill', compact('skills'));
     }
 
     public function create()
@@ -33,6 +34,13 @@ class SkillController extends Controller
         $skill->save();
 
         return redirect()->route('skills')->with('success', 'Skill created successfully.');
+    }
 
+    public function delete($id)
+    {
+        $skill = Skill::findOrFail($id);
+        $skill->delete();
+
+        return redirect()->route('skills')->with('success', 'Skill deleted successfully.');
     }
 }
