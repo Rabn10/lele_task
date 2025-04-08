@@ -11,6 +11,7 @@ Route::get('/', function () {
 
 route::get('/home',[AdminController::class,'index'])->name('home');
 route::get('/uploadCV',[AdminController::class,'create'])->name('uploadCV');
+route::post('/upload-resumes',[AdminController::class,'uploadResumes'])->name('upload-resumes');
 
 route::get('/skills',[SkillController::class,'index'])->name('skills');
 route::get('/createSkill',[SkillController::class,'create'])->name('createSkill');
