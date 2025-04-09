@@ -33,6 +33,7 @@ class AdminController extends Controller
 
         foreach ($request->file('resumes') as $file) {
             $filename = time() . '_' . $file->getClientOriginalName();
+            // $filename = time() . '_' . preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
             $filePath = $file->storeAs('resumes', $filename);
 
             $upload = ResumeUpload::create([
