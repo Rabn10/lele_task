@@ -27,20 +27,19 @@ class ResumeParserService
 
         foreach ($skills as $skill) {
             if (stripos($text, $skill->name) !== false) {
-                $matched[] = $skill->name;
+                $matched[] = $skill->id;
             }
         }
 
-        return [
-            'skills' => explode(',', $text),
-            'matched_skills' => $matched
-        ];
+        return $matched;
     }
 
     public static function extractName($text)
     {
         // Simple regex or fallback: first line
         $lines = explode("\n", $text);
-        return trim($lines[0]) ?? 'Unknown';
+        $name = trim($lines[0]);  
+        $name = preg_replace('/^(name: |\'name: |Name: )/i', '', $name);
+        return $name ?? 'Unknown';
     }
 }

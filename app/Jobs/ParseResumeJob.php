@@ -30,12 +30,17 @@ class ParseResumeJob implements ShouldQueue
 
             $data = ResumeParserService::parse($text);
 
+            $name = $data['name'] ?? null;
+            $email = $data['email'] ?? null;
+            $skills = $data['skills'] ?? [];
 
-            Candidate::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'skills' => $data['skills'],
-                // 'score' => $score,
+            $skillsString = implode(',', $skills);
+
+
+            $candidate = Candidate::create([
+                'name' => $name,
+                'email' => $email,
+                'skills' => $skillsString, // Store skill IDs as a comma-separated list
                 'resume_upload_id' => $this->uploadId,
             ]);
 
