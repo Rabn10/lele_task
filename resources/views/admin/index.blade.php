@@ -18,10 +18,17 @@
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="mb-4 flex justify-end">
                     <a href="{{ url('/uploadCV') }}" 
-                       class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow">
+                       class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mr-4 rounded shadow">
                         Upload CV
                     </a>
+
+                    <a href="{{ url('/exportRankedCsv') }}" 
+                       class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow">
+                        Export Data
+                    </a>
                 </div>
+
+                
 
                 <div class="bg-white rounded-xl shadow-md overflow-hidden">
                     <table class="min-w-full divide-y divide-gray-200">
