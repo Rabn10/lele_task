@@ -9,15 +9,19 @@ Route::get('/', function () {
 });
 ;
 
-route::get('/home',[AdminController::class,'index'])->name('home');
-route::get('/uploadCV',[AdminController::class,'create'])->name('uploadCV');
-route::post('/upload-resumes',[AdminController::class,'uploadResumes'])->name('upload-resumes');
-route::get('/exportRankedCsv',[AdminController::class,'exportRankedCsv'])->name('exportRankedCsv');
+Route::middleware(['auth'])->group(function () {
+    // AdminController routes
+    Route::get('/home', [AdminController::class, 'index'])->name('home');
+    Route::get('/uploadCV', [AdminController::class, 'create'])->name('uploadCV');
+    Route::post('/upload-resumes', [AdminController::class, 'uploadResumes'])->name('upload-resumes');
+    Route::get('/exportRankedCsv', [AdminController::class, 'exportRankedCsv'])->name('exportRankedCsv');
 
-route::get('/skills',[SkillController::class,'index'])->name('skills');
-route::get('/createSkill',[SkillController::class,'create'])->name('createSkill');
-route::get('/editSkill/{id}',[SkillController::class,'editPage'])->name('editSkill');
-route::put('/updateSkill/{id}',[SkillController::class,'update'])->name('updateSkill');
-route::post('/storeSkill',[SkillController::class,'store'])->name('storeSkill');
-route::delete('/deleteSkill/{id}',[SkillController::class,'delete']);
+    // SkillController routes
+    Route::get('/skills', [SkillController::class, 'index'])->name('skills');
+    Route::get('/createSkill', [SkillController::class, 'create'])->name('createSkill');
+    Route::get('/editSkill/{id}', [SkillController::class, 'editPage'])->name('editSkill');
+    Route::put('/updateSkill/{id}', [SkillController::class, 'update'])->name('updateSkill');
+    Route::post('/storeSkill', [SkillController::class, 'store'])->name('storeSkill');
+    Route::delete('/deleteSkill/{id}', [SkillController::class, 'delete'])->name('deleteSkill');
+});
 
