@@ -36,6 +36,27 @@ class SkillController extends Controller
         return redirect()->route('skills')->with('success', 'Skill created successfully.');
     }
 
+    public function editPage($id) {
+        $skill = Skill::find($id);
+
+        return view('admin.EditSkillPage', compact('skill'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'score' => 'required|integer|min:0|max:100',
+        ]);
+
+        $skill = Skill::findOrFail($id);
+        $skill->name = $validatedData['name'];
+        $skill->score = $validatedData['score'];
+        $skill->save();
+
+        return redirect()->route('skills')->with('success', 'Skill updated successfully.');
+    }
+
     public function delete($id)
     {
         $skill = Skill::findOrFail($id);

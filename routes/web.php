@@ -16,6 +16,8 @@ route::get('/exportRankedCsv',[AdminController::class,'exportRankedCsv'])->name(
 
 route::get('/skills',[SkillController::class,'index'])->name('skills');
 route::get('/createSkill',[SkillController::class,'create'])->name('createSkill');
+route::get('/editSkill/{id}',[SkillController::class,'editPage'])->name('editSkill');
+route::put('/updateSkill/{id}',[SkillController::class,'update'])->name('updateSkill');
 route::post('/storeSkill',[SkillController::class,'store'])->name('storeSkill');
 route::delete('/deleteSkill/{id}',[SkillController::class,'delete']);
 
