@@ -8,13 +8,15 @@ use App\Models\ResumeUpload;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\ParseResumeJob;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Candidate;
 
 class AdminController extends Controller
 {
     public function index() {
         $user = Auth()->user();
         if($user){
-            return view('admin.index');
+            $candidates = Candidate::orderBy('score', 'desc')->get();
+            return view('admin.index', compact('candidates'));
         }
         else{
             return redirect()->back();

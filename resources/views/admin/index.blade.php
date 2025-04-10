@@ -34,36 +34,16 @@
                                 <th class="px-6 py-3 text-left text-sm font-medium text-black uppercase tracking-wider">Total Score</th>
                             </tr>
                         </thead>
-                        {{-- <tbody class="bg-white divide-y divide-gray-200 text-sm text-black ">
-                            @foreach ($skills as $skill)
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm text-black ">
+                            @foreach ($candidates as $candidate)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $skill->name }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $skill->score }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap flex space-x-2">
-                                        <a href="{{ url('/editSkill/'.$skill->id) }}" 
-                                           class="bg-green-500 hover:bg-green-600 text-white font-medium py-1 px-3 rounded">
-                                            Edit
-                                        </a>
-                                        <form action="{{ url('/deleteSkill', $skill->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-3 rounded">
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $candidate->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $candidate->email }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $candidate->skills }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $candidate->score }}</td>
                                 </tr>
                             @endforeach
-                        </tbody> --}}
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Rabin Awale</td>
-                                <td>rabin.awale09@gamil.com</td>
-                                <td>Laravel, React, Node</td>
-                                <td>90</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
