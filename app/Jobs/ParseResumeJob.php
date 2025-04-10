@@ -8,6 +8,7 @@ use App\Models\ResumeUpload;
 use Illuminate\Support\Facades\Log;
 use App\Models\Candidate;
 use App\Services\ResumeParserService;
+use App\Services\ResumeScoringService;
 
 class ParseResumeJob implements ShouldQueue
 {
@@ -34,13 +35,17 @@ class ParseResumeJob implements ShouldQueue
             $email = $data['email'] ?? null;
             $skills = $data['skills'] ?? [];
 
+            $score = ResumeScoringService::calculateScore($skills);
+
+
             $skillsString = implode(',', $skills);
 
 
             $candidate = Candidate::create([
                 'name' => $name,
                 'email' => $email,
-                'skills' => $skillsString, // Store skill IDs as a comma-separated list
+                'skills' => $skillsString, 
+                'score' => $score['score'],
                 'resume_upload_id' => $this->uploadId,
             ]);
 

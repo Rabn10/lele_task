@@ -27,7 +27,7 @@ class ResumeParserService
 
         foreach ($skills as $skill) {
             if (stripos($text, $skill->name) !== false) {
-                $matched[] = $skill->id;
+                $matched[] = $skill->name;
             }
         }
 
